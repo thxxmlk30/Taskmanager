@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}{{ projet.nom }}{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <h2>{{ projet.nom }}</h2>
+    <div>
+        {% if projet.createur == user %}
+        <a href="{% url 'projects:modifier_projet' projet.pk %}" class="btn btn-outline-secondary btn-sm">Modifier</a>
+        <a href="{% url 'projects:supprimer_projet' projet.pk %}" class="btn btn-outline-danger btn-sm">Supprimer</a>
+        {% endif %}
+    </div>
+</div>
+<p class="text-muted">{{ projet.description }}</p>
+<p><small>Créé par {{ projet.createur.username }} — Membres : {% for m in projet.membres.all %}{{ m.username }}{% if not forloop.last %}, {% endif %}{% empty %}aucun{% endfor %}</small></p>
+
+<div class="d-flex justify-content-between align-items-center mt-4 mb-2">
+    <h4>Tâches</h4>
+    <a href="{% url 'projects:creer_tache' projet.pk %}" class="btn btn-primary btn-sm">+ Nouvelle tâche</a>
+</div>
+
+{% if taches %}
+<table class="table table-striped align-middle">
+    <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Assignée à</th>
+            <th>Statut</th>
+            <th>Priorité</th>
+            <th>Échéance</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tache in taches %}
+        <tr>
+            <td>{{ tache.titre }}</td>
+            <td>{{ tache.assigne.username|default:"—" }}</td>
+            <td>
+                <form method="post" action="{% url 'projects:changer_statut_tache' projet.pk tache.pk %}" class="statut-inline-form">
+                    {% csrf_token %}
+                    <select name="statut" class="form-select form-select-sm statut-select statut-select-{{ tache.statut }}" onchange="this.form.submit()" aria-label="Changer le statut de {{ tache.titre }}">
+                        {% for valeur, libelle in tache.STATUT_CHOICES %}
+                        <option value="{{ valeur }}" {% if valeur == tache.statut %}selected{% endif %}>{{ libelle }}</option>
+                        {% endfor %}
+                    </select>
+                    <noscript><button type="submit" class="btn btn-sm btn-outline-secondary mt-1">Valider</button></noscript>
+                </form>
+            </td>
+            <td><span class="badge bg-info text-dark">{{ tache.get_priorite_display }}</span></td>
+            <td>{{ tache.date_echeance|default:"—" }}</td>
+            <td>
+                <a href="{% url 'projects:modifier_tache' projet.pk tache.pk %}" class="btn btn-outline-secondary btn-sm">Modifier</a>
+                <a href="{% url 'projects:supprimer_tache' projet.pk tache.pk %}" class="btn btn-outline-danger btn-sm">Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p class="text-muted">Aucune tâche pour l'instant.</p>
+{% endif %}
+
+<a href="{% url 'projects:liste_projets' %}" class="btn btn-link">&larr; Retour aux projets</a>
+{% endblock %}

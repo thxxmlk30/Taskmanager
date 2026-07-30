@@ -1,0 +1,81 @@
+/* ---------- Sélecteur de statut inline (tableau des tâches) ---------- */
+
+.statut-inline-form { margin: 0; }
+
+.statut-select {
+    font-weight: 600;
+    border-width: 2px;
+    cursor: pointer;
+}
+
+.statut-select-a_faire {
+    background-color: #f1f3f5;
+    border-color: #ced4da;
+    color: #495057;
+}
+
+.statut-select-en_cours {
+    background-color: #fff3cd;
+    border-color: #ffca2c;
+    color: #664d03;
+}
+
+.statut-select-terminee {
+    background-color: #d1e7dd;
+    border-color: #75b798;
+    color: #0f5132;
+}
+
+/* ---------- Pages d'authentification (cartes centrées) ---------- */
+
+.auth-page-wrap {
+    min-height: calc(100vh - 120px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 16px;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+    background: #fff;
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    padding: 2.25rem 2rem;
+}
+
+.auth-card .auth-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #e7f1ff;
+    color: #0d6efd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin: 0 auto 1rem;
+}
+
+.auth-card h2 {
+    text-align: center;
+    margin-bottom: 0.25rem;
+}
+
+.auth-card .auth-subtitle {
+    text-align: center;
+    color: #6c757d;
+    margin-bottom: 1.5rem;
+    font-size: 0.92rem;
+}
+
+.auth-card .auth-links {
+    text-align: center;
+    margin-top: 1.25rem;
+    font-size: 0.9rem;
+}
+
+.auth-card .auth-links a { text-decoration: none; }
+.auth-card .auth-links a:hover { text-decoration: underline; }

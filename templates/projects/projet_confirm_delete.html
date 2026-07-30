@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Supprimer le projet{% endblock %}
+{% block content %}
+<h2>Supprimer "{{ projet.nom }}" ?</h2>
+<p class="text-danger">Cette action supprimera également toutes les tâches associées. Elle est irréversible.</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Confirmer la suppression</button>
+    <a href="{% url 'projects:projet_detail' projet.pk %}" class="btn btn-secondary">Annuler</a>
+</form>
+{% endblock %}

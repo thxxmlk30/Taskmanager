@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}E-mail envoyé{% endblock %}
+{% block content %}
+<div class="auth-page-wrap">
+    <div class="auth-card">
+        <div class="auth-icon">✅</div>
+        <h2>E-mail envoyé</h2>
+        <p class="auth-subtitle">
+            Si un compte existe avec cette adresse, un e-mail contenant les instructions
+            pour réinitialiser votre mot de passe vient de vous être envoyé.
+        </p>
+        <div class="auth-links">
+            <a href="{% url 'accounts:connexion' %}">&larr; Retour à la connexion</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

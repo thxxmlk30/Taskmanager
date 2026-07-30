@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Mot de passe mis à jour{% endblock %}
+{% block content %}
+<div class="auth-page-wrap">
+    <div class="auth-card">
+        <div class="auth-icon">🎉</div>
+        <h2>Mot de passe mis à jour</h2>
+        <p class="auth-subtitle">Votre mot de passe a bien été changé. Vous pouvez maintenant vous connecter.</p>
+        <a href="{% url 'accounts:connexion' %}" class="btn btn-primary w-100">Se connecter</a>
+    </div>
+</div>
+{% endblock %}

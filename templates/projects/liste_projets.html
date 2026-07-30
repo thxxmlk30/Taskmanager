@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Mes projets{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Mes projets</h2>
+    <a href="{% url 'projects:creer_projet' %}" class="btn btn-primary">+ Nouveau projet</a>
+</div>
+{% if projets %}
+<div class="row row-cols-1 row-cols-md-3 g-3">
+    {% for projet in projets %}
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">{{ projet.nom }}</h5>
+                <p class="card-text text-muted">{{ projet.description|truncatewords:15 }}</p>
+                <p class="card-text"><small class="text-muted">{{ projet.nb_taches_terminees }} / {{ projet.nb_taches }} tâches terminées</small></p>
+                <a href="{% url 'projects:projet_detail' projet.pk %}" class="btn btn-outline-primary btn-sm">Ouvrir</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p class="text-muted">Vous n'avez encore aucun projet. Créez-en un pour commencer !</p>
+{% endif %}
+{% endblock %}
