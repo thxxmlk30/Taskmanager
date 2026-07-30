@@ -69,6 +69,6 @@ jobs:
         run: npm i -g @railway/cli
 
       - name: Deploy to Railway
-        run: railway up --service taskmanager
+        run: railway up --service carafree-presence
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
